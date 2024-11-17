@@ -1,0 +1,225 @@
+origin：
+import pygame
+import random
+
+def run_game():
+    # Initialize pygame
+    pygame.init()
+
+    # Set up the display
+    screen_width, screen_height = 800, 600
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Basket Catching Golden Eggs")
+
+    # Define colors
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+    GOLD = (255, 215, 0)
+
+    # Player settings
+    player_width, player_height = 100, 20
+    player_x, player_y = (screen_width - player_width) // 2, screen_height - 50
+    player_speed = 10
+
+    # Egg settings
+    egg_radius = 25
+    egg_x, egg_y = random.randint(0, screen_width - egg_radius * 2), 0
+    egg_fall_speed = 10
+
+    # Game state
+    running = True
+    score = 0
+    font = pygame.font.Font(None, 36)
+
+First modification
+
+import pygame
+import random
+
+def run_game():
+    # Initialize pygame
+    pygame.init()
+
+    # Set up the display
+    screen_width, screen_height = 800, 600
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Basket Catching Golden Eggs")
+
+    # Define colors
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+    GOLD = (255, 215, 0)
+
+    # Player settings
+    player_width, player_height = 100, 20
+    player_x, player_y = (screen_width - player_width) // 2, screen_height - 50
+    player_speed = 10
+
+    # Egg settings
+    egg_radius = 25
+    egg_x, egg_y = random.randint(0, screen_width - egg_radius * 2), 0
+    egg_fall_speed = 10
+
+    # Game state
+    running = True
+    score = 0
+    font = pygame.font.Font(None, 36)
+
+    def draw_player():
+        pygame.draw.rect(screen, BLACK, (player_x, player_y, player_width, player_height))
+
+    def draw_egg():
+        pygame.draw.circle(screen, GOLD, (egg_x, egg_y), egg_radius)
+
+    def check_collision():
+        nonlocal score, egg_x, egg_y
+        if player_x < egg_x < player_x + player_width and player_y < egg_y < player_y + player_height:
+            score += 1
+            print(f"Caught an egg! Score: {score}")
+            egg_x, egg_y = random.randint(0, screen_width - egg_radius * 2), 0  # Reset the egg position
+
+    second modification
+
+import pygame
+import random
+
+def run_game():
+    # Initialize pygame
+    pygame.init()
+
+    # Set up the display
+    screen_width, screen_height = 800, 600
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Basket Catching Golden Eggs")
+
+    # Define colors
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+    GOLD = (255, 215, 0)
+
+    # Player settings
+    player_width, player_height = 100, 20
+    player_x, player_y = (screen_width - player_width) // 2, screen_height - 50
+    player_speed = 10
+
+    # Egg settings
+    egg_radius = 25
+    egg_x, egg_y = random.randint(0, screen_width - egg_radius * 2), 0
+    egg_fall_speed = 10
+
+    # Game state
+    running = True
+    score = 0
+    font = pygame.font.Font(None, 36)
+
+    def draw_player():
+        pygame.draw.rect(screen, BLACK, (player_x, player_y, player_width, player_height))
+
+    def draw_egg():
+        pygame.draw.circle(screen, GOLD, (egg_x, egg_y), egg_radius)
+
+    def check_collision():
+        nonlocal score, egg_x, egg_y
+        if player_x < egg_x < player_x + player_width and player_y < egg_y < player_y + player_height:
+            score += 1
+            print(f"Caught an egg! Score: {score}")
+            egg_x, egg_y = random.randint(0, screen_width - egg_radius * 2), 0  # Reset the egg position
+
+    # Main game loop
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT] and player_x > 0:
+            player_x -= player_speed
+        if keys[pygame.K_RIGHT] and player_x < screen_width - player_width:
+            player_x += player_speed
+
+    
+
+
+final modification 
+
+import pygame
+import random
+
+def run_game():
+    # Initialize pygame
+    pygame.init()
+
+    # Set up the display
+    screen_width, screen_height = 800, 600
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Basket Catching Golden Eggs")
+
+    # Define colors
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+    GOLD = (255, 215, 0)
+
+    # Player settings
+    player_width, player_height = 100, 20
+    player_x, player_y = (screen_width - player_width) // 2, screen_height - 50
+    player_speed = 10
+
+    # Egg settings
+    egg_radius = 25
+    egg_x, egg_y = random.randint(0, screen_width - egg_radius * 2), 0
+    egg_fall_speed = 10
+
+    # Game state
+    running = True
+    score = 0
+    font = pygame.font.Font(None, 36)
+
+    def draw_player():
+        pygame.draw.rect(screen, BLACK, (player_x, player_y, player_width, player_height))
+
+    def draw_egg():
+        pygame.draw.circle(screen, GOLD, (egg_x, egg_y), egg_radius)
+
+    def check_collision():
+        nonlocal score, egg_x, egg_y
+        if player_x < egg_x < player_x + player_width and player_y < egg_y < player_y + player_height:
+            score += 1
+            print(f"Caught an egg! Score: {score}")
+            egg_x, egg_y = random.randint(0, screen_width - egg_radius * 2), 0  # Reset the egg position
+
+    # Main game loop
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT] and player_x > 0:
+            player_x -= player_speed
+        if keys[pygame.K_RIGHT] and player_x < screen_width - player_width:
+            player_x += player_speed
+
+        # Update egg position
+        egg_y += egg_fall_speed
+        if egg_y > screen_height:
+            egg_x, egg_y = random.randint(0, screen_width - egg_radius * 2), 0
+
+        # Draw everything
+        screen.fill(WHITE)
+        draw_player()
+        draw_egg()
+        check_collision()
+
+        # Display the score
+        score_text = font.render(f"Score: {score}", True, BLACK)
+        screen.blit(score_text, (10, 10))
+
+        # Update the display
+        pygame.display.flip()
+        pygame.time.delay(30)
+
+    pygame.quit()
+
+# Run the game
+if __name__ == "__main__":
+    run_game()
